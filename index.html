@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letters For My Love ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e8,#fff2f7);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.screen{
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+}
+
+.hidden{
+display:none;
+}
+
+h1{
+font-family:"Great Vibes",cursive;
+font-size:60px;
+color:#d63384;
+margin-bottom:20px;
+}
+
+h2{
+color:#d63384;
+margin-bottom:15px;
+}
+
+p{
+max-width:600px;
+color:#555;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:40px;
+background:#ff5fa2;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:#ff3c8d;
+}
+
+input{
+padding:14px;
+border-radius:30px;
+border:none;
+width:260px;
+margin-bottom:20px;
+text-align:center;
+font-size:16px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+width:100%;
+max-width:900px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.emoji{
+font-size:40px;
+margin-bottom:10px;
+}
+
+#letterModal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.5);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.paper{
+background:#fffdf8;
+width:700px;
+max-width:100%;
+padding:40px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+animation:pop .35s ease;
+}
+
+.paper h3{
+font-family:"Great Vibes",cursive;
+font-size:42px;
+color:#d63384;
+margin-bottom:20px;
+}
+
+.paper p{
+text-align:left;
+margin-bottom:15px;
+}
+
+.close{
+margin-top:20px;
+}
+
+@keyframes pop{
+from{
+transform:scale(.8);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.floating{
+position:absolute;
+font-size:20px;
+opacity:.25;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(120vh);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="floating" style="left:10%;animation-delay:0s;">❤️</div>
+<div class="floating" style="left:30%;animation-delay:2s;">🌸</div>
+<div class="floating" style="left:60%;animation-delay:4s;">💖</div>
+<div class="floating" style="left:80%;animation-delay:1s;">✨</div>
+
+<div id="welcome" class="screen">
+
+<h1>For My Maryum ❤️</h1>
+
+<p>
+Meri Jaan.
+<br><br>
+I made this little place just for you.
+Whenever life feels heavy...
+or you simply miss me...
+there will always be a letter waiting here.
+In our Bubble.
+</p>
+
+<button onclick="showLogin()">Enter</button>
+
+</div>
+
+<div id="login" class="screen hidden">
+
+<h2>What's our secret word?</h2>
+
+<input id="password" placeholder="Password">
+
+<button onclick="login()">Unlock ❤️</button>
+
+<p id="error" style="color:red;margin-top:20px;"></p>
+
+</div>
+
+<div id="letters" class="screen hidden">
+
+<h1>Open When...</h1>
+
+<div class="grid">
+
+<div class="card" onclick="openLetter('miss')">
+<div class="emoji">💌</div>
+Open when you miss me
+</div>
+
+<div class="card" onclick="openLetter('sad')">
+<div class="emoji">🌧️</div>
+Open when you've had a bad day
+</div>
+
+<div class="card" onclick="openLetter('sleep')">
+<div class="emoji">🌙</div>
+Open when you can't sleep
+</div>
+
+<div class="card" onclick="openLetter('happy')">
+<div class="emoji">🎉</div>
+Open when you're celebrating
+</div>
+
+</div>
+
+</div>
+
+<div id="letterModal">
+
+<div class="paper">
+
+<h3 id="title"></h3>
+
+<div id="content"></div>
+
+<button class="close" onclick="closeLetter()">Close ❤️</button>
+
+</div>
+
+</div>
+
+<script>
+
+const PASSWORD = "Jellyfish";
+
+function showLogin(){
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("login").classList.remove("hidden");
+}
+
+function login(){
+
+const input=document.getElementById("password").value;
+
+if(input===PASSWORD){
+
+document.getElementById("login").classList.add("hidden");
+document.getElementById("letters").classList.remove("hidden");
+
+}else{
+
+document.getElementById("error").innerText="That's not our secret ❤️";
+
+}
+
+}
+
+const letters={
+
+miss:{
+title:"Open when you miss me ❤️",
+body:`
+<p>If you're reading this, I wish I could give you the biggest hug.</p>
+
+<p>Until I can, remember that no amount of distance changes how much I care about you.</p>
+
+<p>Think about one of our favorite memories together and know there are so many more waiting for us.</p>
+
+<p>I love you. Always.</p>
+`
+},
+
+sad:{
+title:"Open when you've had a bad day 🌸",
+body:`
+<p>Cha Mimi! I'm really proud of you.</p>
+
+<p>Even on the days when you don't feel strong, you're still trying—and that matters.</p>
+
+<p>Tomorrow is another chance, and I'll always be cheering for you.</p>
+
+<p>Now go drink some water, take a deep breath, and remember how amazing you are. ❤️</p>
+`
+},
+
+sleep:{
+title:"Open when you can't sleep 🌙",
+body:`
+<p>I hope you're wrapped up somewhere cozy.</p>
+
+<p>Imagine we're lying under the stars talking about absolutely nothing until we both fall asleep. Or watching a really good K Drama side by side until our eyes close</p>
+
+<p>Goodnight, beautiful.</p>
+
+<p>Sweet dreams. ❤️</p>
+`
+},
+
+happy:{
+title:"Open when you're celebrating 🎉",
+body:`
+<p>Have an amazing day!</p>
+
+<p>You deserve every good thing that's coming your way.</p>
+
+<p>Now remember the moments and promise me we'll celebrate them all together again soon. ❤️</p>
+`
+}
+
+}
+
+function openLetter(id){
+
+document.getElementById("title").innerHTML=letters[id].title;
+document.getElementById("content").innerHTML=letters[id].body;
+document.getElementById("letterModal").style.display="flex";
+
+}
+
+function closeLetter(){
+
+document.getElementById("letterModal").style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>
