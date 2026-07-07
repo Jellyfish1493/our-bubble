@@ -177,6 +177,70 @@ transform:translateY(-120vh);
 }
 }
 
+/* 📱 Mobile optimisation */
+
+@media (max-width: 600px) {
+
+body {
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.screen {
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 15px;
+}
+
+button {
+    width: 80%;
+    max-width: 280px;
+}
+
+input {
+    width: 80%;
+    max-width: 280px;
+}
+
+.grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    padding: 25px;
+    font-size: 15px;
+}
+
+.emoji {
+    font-size: 35px;
+}
+
+.paper {
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.paper h3 {
+    font-size: 35px;
+}
+
+}  
+  
 </style>
 </head>
 
