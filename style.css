@@ -320,6 +320,10 @@ input {
     max-width: 280px;
 }
 
+.desk{
+    gap:80px;
+}
+
 .grid {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -344,6 +348,14 @@ input {
 
 .paper h3 {
     font-size: 35px;
+}
+
+.envelope.open{
+    z-index:50;
+}
+
+.envelope.open .front-text{
+    opacity:0;
 }
 
 }  
